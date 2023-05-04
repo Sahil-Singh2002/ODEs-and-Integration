@@ -5,8 +5,6 @@
 #################################################################
 ## Imports
 ## - No further imports should be necessary
-## - If you wish to import a non-standard modules, ask Ed if that 
-## - is acceptable
 #################################################################
 import numpy as np
 
@@ -59,8 +57,7 @@ def adams_bashforth(f,a,b,ya,n,method):
 
 #################################################################
 ## Test Code ##
-## You are highly encouraged to write your own tests as well,
-## but these should be written in a separate file
+## You are highly encouraged to write your own tests as well
 #################################################################
 
 ################
