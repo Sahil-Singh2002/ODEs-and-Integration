@@ -5,8 +5,6 @@
 #################################################################
 ## Imports
 ## - No further imports should be necessary
-## - If you wish to import a non-standard modules, ask Ed if that 
-## - is acceptable
 #################################################################
 import numpy as np
 import matplotlib.pyplot as plt
@@ -115,8 +113,7 @@ def compute_errors(N,no_n,levels,no_levels,f,a,b,true_val):
     return error_matrix,fig
 #################################################################
 ## Test Code ##
-## You are highly encouraged to write your own tests as well,
-## but these should be written in a separate file
+## You are highly encouraged to write your own tests as well
 #################################################################
 
 ################
@@ -137,8 +134,6 @@ print("Q1 TEST OUTPUT:\n")
 print("integral_approx =\n")
 print(integral_approx)
 print("")
-
-
 
 # Initialise
 f = lambda x: np.sin(x)
