@@ -93,24 +93,18 @@ def compute_errors(N,no_n,levels,no_levels,f,a,b,true_val):
     rate of convergence is being affected.
     '''
     fig, ax = plt.subplots()
-    #Algorithm
     error_matrix = np.zeros((no_levels, no_n))
-    for i,level in enumerate(levels):
-        for j,num in enumerate(N):
-            approx = romberg_integration(a,b,num,f,level) 
-            error_matrix[i,j] = abs(approx -true_val)
-        #Plot
-        ax.loglog(N,error_matrix[i],
-                  "o",label=f"Level {level}",linestyle ='-')  
-        #Label for axies
-        ax.set_xlabel("Number of subintervals n")
-        ax.set_ylabel("Error")
-        #Label for Title
-        ax.set_title("Error vs # subintervals for levels")
-        ax.legend(loc=(1.02, 0))
-        
+    for i, level in enumerate(levels):
+        for j, num in enumerate(N):
+            approx = romberg_integration(a, b, num, f, level)
+            error_matrix[i, j] = abs(approx - true_val)
+        ax.loglog(N, error_matrix[i], "o", label=f"Level {level}", linestyle="-")
+    ax.set_xlabel("Number of subintervals n")
+    ax.set_ylabel("Error")
+    ax.set_title("Error vs # subintervals for levels")
+    ax.legend(loc=(1.02, 0))
     plt.show()
-    return error_matrix,fig
+    return error_matrix, fig
 #################################################################
 ## Test Code ##
 ## You are highly encouraged to write your own tests as well
