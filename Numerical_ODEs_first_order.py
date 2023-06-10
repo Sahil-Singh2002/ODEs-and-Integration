@@ -1,58 +1,44 @@
 #################################################################
-## Functions to carry out numerical solution of first order IVPS
-#################################################################
-
-#################################################################
 ## Imports
 ## - No further imports should be necessary
 #################################################################
 import numpy as np
 
-#################################################################
-## Functions to be completed by student
-#################################################################
-
-#%% Q3 code
-
 def adams_bashforth(f,a,b,ya,n,method):
-    '''
-    The function approximates the solution y(t) for an initial
-    value problem, over the interval [a,b], with RHS function given in f and initial
-    condition given in ya. Finds this based on method 1 and 2. For method 1 using Euler
-    while for method 2 it uses Adams-Bashforth method.
+  """
+    Approximates the solution y(t) for an initial value problem, over the interval [a,b],
+    with RHS function given in f and initial condition given in ya. Implements Euler's method
+    if method=1 and 2-step Adams-Bashforth method if method=2.
 
-    Parameters
-    ----------
-    a (float): The lower limit of integration
-    b (float): The upper limit of integration
-    n (int): The number of subintervals to use
-    f (function): The function to find Numerical first order ODE for
-    ya (float):The intual condition/ value for y
-    method (int) : of only two types 1 representing Euler's Method and 
-    2 representing Adam-Bashforth method.
+    Parameters:
+    a (float): The lower limit of integration.
+    b (float): The upper limit of integration.
+    n (int): The number of subintervals to use.
+    f (function): The function to find the numerical solution for the first order ODE.
+    ya (float): The initial condition/value for y.
+    method (int): Method selector. 1 represents Euler's Method, 2 represents Adams-Bashforth method.
 
-    Returns
-    -------
+    Returns:
     t (ndarray): The position in the interval [a,b].
-    y (ndarray): the point y(t) approximated based on method 1 or 2.
+    y (ndarray): The point y(t) approximated based on method 1 or 2.
+    """
 
-    '''
     #assert
-    if type(n) != int or n<= 0:
-        raise ValueError("The input needs to be posive Integer")
+    if not isinstance(n, int) or n <= 0:
+        raise ValueError("The input needs to be a positive integer.")
     #initual set
     y,t = np.zeros(n+1),np.linspace(a,b,n+1)
-    diff_n = (b-a)/n
+    h = (b-a)/n
     y[0]=ya
     #Euler = 1
     if method ==1:
         for i in range(n):
-            y[i+1] = f(t[i],y[i])*diff_n +y[i]
+            y[i+1] = f(t[i],y[i])*h +y[i]
     #Adam-Bashforth =2
     elif method ==2:
-        y[1] = y[0]+ f(t[0],y[0])*diff_n
+        y[1] = y[0]+ f(t[0],y[0])*h # Initial approximation using Euler's Method
         for j in range(1,n):
-            y[j+1]=  y[j]+  (f(t[j],y[j])*3 -f(t[j-1],y[j-1]))*(diff_n*0.5)
+            y[j+1]=  y[j]+  (f(t[j],y[j])*3 -f(t[j-1],y[j-1]))*(h*0.5)
     return t,y
 
 #################################################################
